@@ -78,7 +78,7 @@ public class AppBundlerTask extends Task {
     private String copyright = "";
     private String privileged = null;
     private String workingDirectory = null;
-    private String minimumSystemVersion = "10.7";
+    private String minimumSystemVersion = "10.11";
 
     private boolean requiresAquaAppearance = false;
     private String jvmRequired = null;
@@ -525,7 +525,7 @@ public class AppBundlerTask extends Task {
         if (classPathRef != null) {
           org.apache.tools.ant.types.Path classpath =
             (org.apache.tools.ant.types.Path) classPathRef.getReferencedObject(getProject());
-          Iterator iter = classpath.iterator();
+          Iterator<?> iter = classpath.iterator();
           while (iter.hasNext()) {
             Object resource = iter.next();
             if (resource instanceof FileResource) {

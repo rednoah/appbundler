@@ -76,7 +76,9 @@ questions.
         </exec>
 
         <exec executable="${cc}" failonerror="true">
+            <arg line="${archarm64}"/>
             <arg line="${arch64}"/>
+            <arg line="-O2 -DNDEBUG"/>
             <arg value="-I"/>
             <arg value="${javahome}/include"/>
             <arg value="-I"/>
@@ -90,7 +92,7 @@ questions.
             <arg value="${javahome}/../.."/>
             <arg value="-isysroot"/>
             <arg value="${osx.sdk.dir}"/>
-            <arg value="-mmacosx-version-min=10.7"/> 
+            <arg value="-mmacosx-version-min=10.11"/> 
             <arg value="-fobjc-exceptions"/>
             <arg value="-std=c99"/>
             <arg value="appbundler/native/main.m"/>
