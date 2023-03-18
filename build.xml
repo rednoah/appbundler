@@ -42,8 +42,7 @@ questions.
         <javac destDir="${ant.project.name}/${folder.classes}"
             includejavaruntime="true"
             includeantruntime="true"
-            target="1.8"
-            source="1.8"
+            release="17"
             deprecation="true"
             debug="true"
             encoding="UTF-8"
@@ -74,6 +73,7 @@ questions.
             <arg line="${archarm64}"/>
             <arg line="${arch64}"/>
             <arg line="-O2 -DNDEBUG"/>
+            <arg value="--verbose" />
             <arg value="-I"/>
             <arg value="${env.JAVA_HOME}/include"/>
             <arg value="-I"/>
