@@ -66,12 +66,7 @@ questions.
             </fileset>
         </copy>
 
-        <exec executable="/usr/libexec/java_home" outputproperty="libexec_javahome" />
-        <condition property="javahome" value="${env.JAVA_HOME}" else="${libexec_javahome}">
-            <isset property="env.JAVA_HOME"/>
-        </condition>
-
-        <exec executable="xcrun" outputproperty="osx.sdk.dir">
+        <exec executable="xcrun" outputproperty="osx.sdk.dir" failonerror="true">
             <arg value="--show-sdk-path" />
         </exec>
 
@@ -80,19 +75,19 @@ questions.
             <arg line="${arch64}"/>
             <arg line="-O2 -DNDEBUG"/>
             <arg value="-I"/>
-            <arg value="${javahome}/include"/>
+            <arg value="${env.JAVA_HOME}/include"/>
             <arg value="-I"/>
-            <arg value="${javahome}/include/darwin"/>
+            <arg value="${env.JAVA_HOME}/include/darwin"/>
             <arg value="-o"/>
             <arg value="${ant.project.name}/${folder.classes}/com/oracle/appbundler/JavaAppLauncher"/>
-            <arg value='-DLIBJLI_DYLIB="${javahome}/jre/lib/jli/libjli.dylib"'/>
+            <arg value='-DLIBJLI_DYLIB="${env.JAVA_HOME}/jre/lib/jli/libjli.dylib"'/>
             <arg value="-framework"/>
             <arg value="Cocoa"/>
             <arg value="-F"/>
-            <arg value="${javahome}/../.."/>
+            <arg value="${env.JAVA_HOME}/../.."/>
             <arg value="-isysroot"/>
             <arg value="${osx.sdk.dir}"/>
-            <arg value="-mmacosx-version-min=10.11"/> 
+            <arg value="-mmacosx-version-min=10.15"/> 
             <arg value="-fobjc-exceptions"/>
             <arg value="-std=c99"/>
             <arg value="appbundler/native/main.m"/>
